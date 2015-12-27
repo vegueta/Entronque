@@ -16,30 +16,30 @@ class proveedores(models.Model):
     email= models.CharField(max_length=30)
 
 class platillos(models.Model):
-    idplatillo=models.IntegerField(primary_key=True)
+    idplatillo=models.AutoField(primary_key=True)
     nombre= models.CharField(max_length=20)
     tipo = models.CharField(max_length=20)
     costo= models.FloatField()
 
 class ventasplatillo(models.Model):
-    idventa_p=models.IntegerField(primary_key=True)
+    idventa_p=models.AutoField(primary_key=True)
     idplatillo= models.ForeignKey(platillos)
     producto=models.CharField(max_length=20)
     total=models.IntegerField()
 
 class compras(models.Model):
-    idcompra=models.IntegerField(primary_key=True)
-    idproveedor= models.ForeignKey(proveedores)
+    idcompra=models.AutoField(primary_key=True)
+    idproveedor= models.ForeignKey(proveedores,on_delete=models.CASCADE,)
     producto= models.CharField(max_length=30)
     costo= models.FloatField()
 
 class almacen(models.Model):
-    idproducto=models.IntegerField(primary_key=True)
+    idproducto=models.AutoField(primary_key=True)
     cantidad=models.IntegerField()
     idcompra= models.ForeignKey(compras)
 
 class bebidas(models.Model):
-    idbebida=models.IntegerField(primary_key=True)
+    idbebida=models.AutoField(primary_key=True)
     idproducto= models.ForeignKey(almacen)
     nombre= models.CharField(max_length=30)
     presentacion= models.CharField(max_length=30)
@@ -47,7 +47,7 @@ class bebidas(models.Model):
 
 
 class ventasbebidas(models.Model):
-    idventa_b=models.IntegerField(primary_key=True)
+    idventa_b=models.AutoField(primary_key=True)
     idbebida= models.ForeignKey(bebidas)
     producto=models.CharField(max_length=30)
     total=models.IntegerField()
