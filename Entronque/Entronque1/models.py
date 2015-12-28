@@ -51,3 +51,5 @@ class ventasbebidas(models.Model):
     idbebida= models.ForeignKey(bebidas)
     producto=models.CharField(max_length=30)
     total=models.IntegerField()
+    
+    
